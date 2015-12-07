@@ -32,9 +32,8 @@
                 <span class="glyphicon glyphicon-list-alt"></span>
             </h1>
         </div>
-        <form action="" class="form">
+        <form action="" class="form" id="form_iso12207">
             <div class="row">
-
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="nombre_proceso">Nombre de proceso</label>
                     <input type="text" class="form-control" id="nombre_proceso">
@@ -47,12 +46,105 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-gourp col-lg-4 col-xs-12">
-                    <label for="">Agregar nota</label>
+                <div class="form-group col-xs-12 col-lg-6">
+                    <label style="padding-right:10px;" for="">Agregar nota</label>
+                    <button type="button" class="btn btn-default" id="campo_nota">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-6">
+                    <label for="">Proposito del proceso</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label for="">Resultados esperados del proceso</label>
+                    <input type="text" class="form-control">
+                    <label style="padding-top:20px; padding-right:10px;" for="">Agregar otro resultado</label>
+                    <button type="button" class="btn btn-default" id="campo_resultado">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row" id="campo_actividad">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label style="padding-right:10px;" for="">Agregar actividad</label>
+                    <button type="button" class="btn btn-default" id="boton_actividad">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label for="">Nombre de la actividad</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label for="">Tarea</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label style="padding-right:10px;" for="">Agregar tarea</label>
+                    <button type="button" class="btn btn-default" id="boton_tarea">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
         </form>
+        <script type="text/javascript">
+            var tarea = "<div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                <label>Tarea</label>\
+                                <input type=\"text\" class=\"form-control\">\
+                            </div>\
+                        </div>";            
+            $("#form_iso12207").on("click", "#boton_tarea", function(){
+                $(this).parent().parent().before(tarea);
+            });
+            $(document).ready(function() {
+                $("#campo_nota").click(function() {
+                    $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' style='margin-top:8px;'>");
+                });
+            });
+            $(document).ready(function() {
+                $("#campo_resultado").click(function() {
+                    $(this).after("<input type='text' class='form-control' style='margin-top:8px;'>");
+                });
+            });
+            var act = 0;
+            $(document).ready(function() {
+                $("#boton_actividad").click(function() {
+                    var todo = "<div class=\"row\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                        <label>Nombre de la actividad</label>\
+                                        <input type=\"text\" class=\"form-control\">\
+                                    </div>\
+                                </div>\
+                                <div class=\"row\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                        <label>Tarea</label>\
+                                        <input type=\"text\" class=\"form-control\">\
+                                    </div>\
+                                </div>\
+                                <div class=\"row\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                        <label style=\"padding-right:10px;\">Agregar tarea</label>\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_tarea\">\
+                                            <span class=\"glyphicon glyphicon-plus\"></span>\
+                                        </button>\
+                                    </div>\
+                                </div>";
+                    $("#campo_actividad").after(todo);
+                });
+            });
+        </script>
     </div>
 </body>
 
