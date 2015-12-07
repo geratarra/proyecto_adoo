@@ -89,10 +89,18 @@
                     <input type="text" class="form-control">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="row_tarea">
                 <div class="form-group col-xs-12 col-sm-12 col-lg-6">
                     <label style="padding-right:10px;" for="">Agregar tarea</label>
                     <button type="button" class="btn btn-default" id="boton_tarea">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label>Agregar opcion</label>
+                    <button type="button" class="btn btn-default" id="boton_opcion">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </div>
@@ -104,10 +112,20 @@
                                 <label>Tarea</label>\
                                 <input type=\"text\" class=\"form-control\">\
                             </div>\
-                        </div>";            
+                        </div>";
+            var opcion = "<div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                <label>Opcion</label>\
+                                <input type=\"text\" class=\"form-control\">\
+                            </div>\
+                        </div>";
             $("#form_iso12207").on("click", "#boton_tarea", function(){
                 $(this).parent().parent().before(tarea);
             });
+            $("#form_iso12207").on("click", "#boton_opcion", function(){
+                $(this).parent().parent().prev().before(opcion);
+            });
+
             $(document).ready(function() {
                 $("#campo_nota").click(function() {
                     $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' style='margin-top:8px;'>");
@@ -133,10 +151,18 @@
                                         <input type=\"text\" class=\"form-control\">\
                                     </div>\
                                 </div>\
+                                <div class=\"row\" id=\"row_tarea\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                        <label>Agregar tarea</label>\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_tarea\">\
+                                            <span class=\"glyphicon glyphicon-plus\"></span>\
+                                        </button>\
+                                    </div>\
+                                </div>\
                                 <div class=\"row\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                        <label style=\"padding-right:10px;\">Agregar tarea</label>\
-                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_tarea\">\
+                                        <label>Agregar opcion</label>\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_opcion\">\
                                             <span class=\"glyphicon glyphicon-plus\"></span>\
                                         </button>\
                                     </div>\
@@ -144,6 +170,7 @@
                     $("#campo_actividad").after(todo);
                 });
             });
+
         </script>
     </div>
 </body>
