@@ -70,41 +70,53 @@
                 </div>
             </div>
             <div class="row" id="campo_actividad">
-                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
                     <label style="padding-right:10px;" for="">Agregar actividad</label>
                     <button type="button" class="btn btn-default" id="boton_actividad">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                    <label for="">Nombre de la actividad</label>
-                    <input type="text" class="form-control">
+            <div class="jumbotron">
+
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                        <label for="">Nombre de la actividad</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                        <label for="">Tarea</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row" id="row_tarea">
+                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                        <label style="padding-right:10px;" for="">Agregar tarea</label>
+                        <button type="button" class="btn btn-default" id="boton_tarea">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                        <label>Agregar opcion</label>
+                        <button type="button" class="btn btn-default" id="boton_opcion">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row" id="ultimo_nota">
+                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                        <label>Agregar nota a tarea</label>
+                        <button type="button" class="btn btn-default" id="boton_nota_tarea">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                    <label for="">Tarea</label>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="row" id="row_tarea">
-                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                    <label style="padding-right:10px;" for="">Agregar tarea</label>
-                    <button type="button" class="btn btn-default" id="boton_tarea">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                    <label>Agregar opcion</label>
-                    <button type="button" class="btn btn-default" id="boton_opcion">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </div>
-            </div>
+
         </form>
         <script type="text/javascript">
             var tarea = "<div class=\"row\">\
@@ -119,13 +131,21 @@
                                 <input type=\"text\" class=\"form-control\">\
                             </div>\
                         </div>";
+            var nota = "<div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                <label>Nota (tarea)</label>\
+                                <input type=\"text\" class=\"form-control\">\
+                            </div>\
+                        </div>"
             $("#form_iso12207").on("click", "#boton_tarea", function(){
                 $(this).parent().parent().before(tarea);
             });
             $("#form_iso12207").on("click", "#boton_opcion", function(){
                 $(this).parent().parent().prev().before(opcion);
             });
-
+            $("#form_iso12207").on("click", "#boton_nota_tarea", function(){
+                $(this).parent().parent().prev().prev().before(nota);
+            });
             $(document).ready(function() {
                 $("#campo_nota").click(function() {
                     $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' style='margin-top:8px;'>");
@@ -139,7 +159,8 @@
             var act = 0;
             $(document).ready(function() {
                 $("#boton_actividad").click(function() {
-                    var todo = "<div class=\"row\">\
+                    var todo = "<div class=\"jumbotron\">\
+                                <div class=\"row\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                         <label>Nombre de la actividad</label>\
                                         <input type=\"text\" class=\"form-control\">\
@@ -166,8 +187,17 @@
                                             <span class=\"glyphicon glyphicon-plus\"></span>\
                                         </button>\
                                     </div>\
+                                </div>\
+                                <div class=\"row\" id=\"ultimo_nota\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                        <label>Nota (tarea)</label>\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_nota_tarea\">\
+                                            <span class=\"glyphicon glyphicon-plus\"></span>\
+                                        </button>\
+                                    </div>\
+                                </div>\
                                 </div>";
-                    $("#campo_actividad").after(todo);
+                        $("div[class=jumbotron]:last").after(todo);
                 });
             });
 
