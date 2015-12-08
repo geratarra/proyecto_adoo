@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>RARP</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>ISO/IEC 29110
+                <span class="glyphicon glyphicon-list-alt"></span>
+            </h1>
+        </div>
+        <form action="" class="form" id="form_iso29110">
+            <div class="row">
+
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="nombre_proceso">Nombre de proceso</label>
+                    <input type="text" class="form-control" id="nombre_proceso">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    <label for="id_proceso">ID</label>
+                    <input type="text" class="form-control" id="id_proceso">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="proposito_proceso">Objetivo General</label>
+                    <textarea class="form-control" rows="5" id="proposito_proceso"></textarea>
+                </div>
+            </div>
+
+            <div class="row" id="campo_objetivo">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
+                    <label style="padding-right:10px;" for="">Agregar objetivo especifico</label>
+                    <button type="button" class="btn btn-default" id="obj_agregar">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" id="campo_actividad">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
+                    <label style="padding-right:10px;" for="">Agregar actividad</label>
+                    <button type="button" class="btn btn-default" id="boton_actividad">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" id="campo_rol">
+              <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
+                <label style="padding-right:10px;" for="">Agregar rol</label>
+                <button type="button" class="btn btn-default" id="rol_agregar">
+                <span class="glyphicon glyphicon-plus"></span></button>
+              </div>
+            </div>
+
+            <div class="row" id="campo_prod">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
+                  <label style="padding-right:10px;" for="">Agregar productos</label>
+                  <button type="button" class="btn btn-default" id="prod_agregar">
+                  <span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>
+
+        </form>
+
+        <script type="text/javascript">
+            var tarea = "<div class=\"row\">\
+                          <div class=\"form-group col-xs-12 col-sm-6 col-md-6 col-lg-6\">\
+                            <label>Metodo</label>\
+                            <input type=\"text\" class=\"form-control\" id=\"met_nombre\">\
+                            <button type=\"button\" class=\"btn btn-default\" id=\"met_eliminar\">\
+                                Eliminar metodo<span class=\"glyphicon glyphicon-trash\"></span>\
+                            </button></td>\
+                          </div>\
+                        </div>";
+            var opcion = "<div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                <label>Opcion</label>\
+                                <input type=\"text\" class=\"form-control\">\
+                            </div>\
+                        </div>";
+
+
+            $("#form_iso29110").on("click", "#met_agregar", function(){
+                $(this).prev().after(tarea);
+            });
+            $("#form_iso29110").on("click", "#met_eliminar", function(){
+                $(this).parent().parent().remove();
+            });
+            $("#form_iso29110").on("click", "#act_eliminar", function(){
+                $(this).parent().parent().parent().remove();
+            });
+            $("#form_iso29110").on("click", "#rol_eliminar", function(){
+                $(this).parent().parent().parent().remove();
+            });
+            $("#form_iso29110").on("click", "#prod_eliminar", function(){
+                $(this).parent().parent().parent().remove();
+            });
+            $("#form_iso29110").on("click", "#obj_eliminar", function(){
+                $(this).parent().parent().parent().remove();
+            });
+            $("#form_iso29110").on("click", "#boton_opcion", function(){
+                $(this).parent().parent().prev().before(opcion);
+            });
+
+            $(document).ready(function() {
+                $("#campo_nota").click(function() {
+                    $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' style='margin-top:8px;'>");
+                });
+            });
+            $(document).ready(function() {
+                $("#campo_resultado").click(function() {
+                    $(this).after("<input type='text' class='form-control' style='margin-top:8px;'>");
+                });
+            });
+            var act = 0;
+            $(document).ready(function() {
+                $("#boton_actividad").click(function() {
+                    var todo = "<div class=\"jumbotron\">\
+                                  <div class=\"row\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                      <label for=\"actividades\">Actividad</label>\
+                                        <input type=\"text\" class=\"form-control\" id=\"actividades\">\
+                                        <button type=\"button\" class=\"btn btn-default \" id=\"act_eliminar\">\
+                                            Eliminar Actividad<span class=\"glyphicon glyphicon-trash\"></span>\
+                                        </button>\
+                                      <button type=\"button\" class=\"btn btn-default\" id=\"met_agregar\">Agregar Metodo\
+                                      <span class=\"glyphicon glyphicon-plus\"></span></button>\
+                                </div>\
+                              </div>";
+                    $("#campo_actividad").after(todo);
+                });
+            });
+
+            $(document).ready(function() {
+                $("#rol_agregar").click(function() {
+                    var todo_rol = "<div class=\"jumbotron\">\
+                                      <div class=\"row\">\
+                                        <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                          <label>Rol</label>\
+                                          <input type=\"text\" class=\"form-control\" id=\"rol\">\
+                                          <label>Nombre</label>\
+                                          <input type=\"text\" class=\"form-control\" id=\"nombre\">\
+                                          <button type=\"button\" class=\"btn btn-default\" id=\"rol_eliminar\">\
+                                              <span class=\"glyphicon glyphicon-trash\"></span>\
+                                          </button>\
+                                        </div>\
+                                      </div>\
+                                    </div>";
+                    $("#campo_rol").after(todo_rol);
+                });
+            });
+
+            $(document).ready(function() {
+                $("#prod_agregar").click(function() {
+                    var todo_prod = "<div class=\"jumbotron\">\
+                                      <div class=\"row\">\
+                                        <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                          <label>Producto</label>\
+                                          <input type=\"text\" class=\"form-control\" id=\"prod_nombre\">\
+                                          <button type=\"button\" class=\"btn btn-default\" id=\"prod_eliminar\">\
+                                              <span class=\"glyphicon glyphicon-trash\"></span>\
+                                          </button>\
+                                        </div>\
+                                      </div>\
+                                    </div>";
+                    $("#campo_prod").after(todo_prod);
+                });
+            });
+
+            $(document).ready(function() {
+                $("#obj_agregar").click(function() {
+                    var todo_obj = "<div class=\"jumbotron\">\
+                                      <div class=\"row\">\
+                                        <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                          <label>Objetivo</label>\
+                                          <input type=\"text\" class=\"form-control\" id=\"obj_nombre\">\
+                                          <button type=\"button\" class=\"btn btn-default\" id=\"obj_eliminar\">\
+                                              <span class=\"glyphicon glyphicon-trash\"></span>\
+                                          </button>\
+                                        </div>\
+                                      </div>\
+                                    </div>";
+                    $("#campo_objetivo").after(todo_obj);
+                });
+            });
+
+        </script>
+    </div>
+</body>
+
+</html>
