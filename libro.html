@@ -28,7 +28,7 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>ISO/IEC 29110
+            <h1>Ingenieria de Software Pragmatica
                 <span class="glyphicon glyphicon-list-alt"></span>
             </h1>
         </div>
@@ -50,50 +50,17 @@
 
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <label for="proposito_proceso">Proposito</label>
+                    <label for="proposito_proceso">Objetivo General</label>
                     <textarea class="form-control" rows="5" id="proposito_proceso"></textarea>
                 </div>
             </div>
 
             <div class="row" id="campo_objetivo">
                 <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
-                    <label style="padding-right:10px;" for="">Agregar objetivo</label>
+                    <label style="padding-right:10px;" for="">Agregar objetivo especifico</label>
                     <button type="button" class="btn btn-default" id="obj_agregar">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
-                </div>
-            </div>
-
-
-            <div class="row" id="campo_rol">
-              <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
-                <label style="padding-right:10px;" for="">Agregar rol</label>
-                <button type="button" class="btn btn-default" id="rol_agregar">
-                <span class="glyphicon glyphicon-plus"></span></button>
-              </div>
-            </div>
-
-            <div class="row" id="campo_pent">
-              <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
-                <label style="padding-right:10px;" for="">Agregar producto de entrada</label>
-                <button type="button" class="btn btn-default" id="pent_agregar">
-                <span class="glyphicon glyphicon-plus"></span></button>
-              </div>
-            </div>
-
-            <div class="row" id="campo_psal">
-              <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
-                <label style="padding-right:10px;" for="">Agregar producto de salida</label>
-                <button type="button" class="btn btn-default" id="psal_agregar">
-                <span class="glyphicon glyphicon-plus"></span></button>
-              </div>
-            </div>
-
-            <div class="row" id="campo_pint">
-                <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
-                  <label style="padding-right:10px;" for="">Agregar producto de interno</label>
-                  <button type="button" class="btn btn-default" id="pint_agregar">
-                  <span class="glyphicon glyphicon-plus"></span></button>
                 </div>
             </div>
 
@@ -106,11 +73,19 @@
                 </div>
             </div>
 
+            <div class="row" id="campo_rol">
+              <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
+                <label style="padding-right:10px;" for="">Agregar rol</label>
+                <button type="button" class="btn btn-default" id="rol_agregar">
+                <span class="glyphicon glyphicon-plus"></span></button>
+              </div>
+            </div>
 
-            <div class="row">
-                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6 alert alert-info">
-                    <label for="nombre_proceso">Diagrama</label>
-                    <input type="file" class="form-control" id="diagrama" accept="image/*">
+            <div class="row" id="campo_prod">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
+                  <label style="padding-right:10px;" for="">Agregar productos</label>
+                  <button type="button" class="btn btn-default" id="prod_agregar">
+                  <span class="glyphicon glyphicon-plus"></span></button>
                 </div>
             </div>
 
@@ -119,16 +94,10 @@
         <script type="text/javascript">
             var tarea = "<div class=\"row\">\
                           <div class=\"form-group col-xs-12 col-sm-6 col-md-6 col-lg-6\">\
-                            <label>Nombre</label>\
-                            <input type=\"text\" class=\"form-control\" id=\"tar_nombre\">\
-                            <label>Rol</label>\
-                            <input type=\"text\" class=\"form-control\" id=\"tar_rol\">\
-                            <label>Productos de entrada</label>\
-                            <input type=\"text\" class=\"form-control\" id=\"tar_pent\">\
-                            <label>Productos de salida</label>\
-                            <input type=\"text\" class=\"form-control\" id=\"tar_psal\">\
-                            <button type=\"button\" class=\"btn btn-default\" id=\"tar_eliminar\">\
-                                Eliminar Tarea<span class=\"glyphicon glyphicon-trash\"></span>\
+                            <label>Metodo</label>\
+                            <input type=\"text\" class=\"form-control\" id=\"met_nombre\">\
+                            <button type=\"button\" class=\"btn btn-default\" id=\"met_eliminar\">\
+                                Eliminar metodo<span class=\"glyphicon glyphicon-trash\"></span>\
                             </button></td>\
                           </div>\
                         </div>";
@@ -140,10 +109,10 @@
                         </div>";
 
 
-            $("#form_iso29110").on("click", "#tar_agregar", function(){
+            $("#form_iso29110").on("click", "#met_agregar", function(){
                 $(this).prev().after(tarea);
             });
-            $("#form_iso29110").on("click", "#tar_eliminar", function(){
+            $("#form_iso29110").on("click", "#met_eliminar", function(){
                 $(this).parent().parent().remove();
             });
             $("#form_iso29110").on("click", "#act_eliminar", function(){
@@ -152,13 +121,7 @@
             $("#form_iso29110").on("click", "#rol_eliminar", function(){
                 $(this).parent().parent().parent().remove();
             });
-            $("#form_iso29110").on("click", "#pent_eliminar", function(){
-                $(this).parent().parent().parent().remove();
-            });
-            $("#form_iso29110").on("click", "#psal_eliminar", function(){
-                $(this).parent().parent().parent().remove();
-            });
-            $("#form_iso29110").on("click", "#pint_eliminar", function(){
+            $("#form_iso29110").on("click", "#prod_eliminar", function(){
                 $(this).parent().parent().parent().remove();
             });
             $("#form_iso29110").on("click", "#obj_eliminar", function(){
@@ -189,7 +152,7 @@
                                         <button type=\"button\" class=\"btn btn-default \" id=\"act_eliminar\">\
                                             Eliminar Actividad<span class=\"glyphicon glyphicon-trash\"></span>\
                                         </button>\
-                                      <button type=\"button\" class=\"btn btn-default\" id=\"tar_agregar\">Agregar Tarea\
+                                      <button type=\"button\" class=\"btn btn-default\" id=\"met_agregar\">Agregar Metodo\
                                       <span class=\"glyphicon glyphicon-plus\"></span></button>\
                                 </div>\
                               </div>";
@@ -204,8 +167,8 @@
                                         <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                           <label>Rol</label>\
                                           <input type=\"text\" class=\"form-control\" id=\"rol\">\
-                                          <label>Abreviación</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"abreviacion\">\
+                                          <label>Nombre</label>\
+                                          <input type=\"text\" class=\"form-control\" id=\"nombre\">\
                                           <button type=\"button\" class=\"btn btn-default\" id=\"rol_eliminar\">\
                                               <span class=\"glyphicon glyphicon-trash\"></span>\
                                           </button>\
@@ -217,57 +180,19 @@
             });
 
             $(document).ready(function() {
-                $("#pent_agregar").click(function() {
-                    var todo_pent = "<div class=\"jumbotron\">\
+                $("#prod_agregar").click(function() {
+                    var todo_prod = "<div class=\"jumbotron\">\
                                       <div class=\"row\">\
                                         <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                          <label>Nombre</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"pent_nombre\">\
-                                          <label>Fuente</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"pent_fuente\">\
-                                          <button type=\"button\" class=\"btn btn-default\" id=\"pent_eliminar\">\
+                                          <label>Producto</label>\
+                                          <input type=\"text\" class=\"form-control\" id=\"prod_nombre\">\
+                                          <button type=\"button\" class=\"btn btn-default\" id=\"prod_eliminar\">\
                                               <span class=\"glyphicon glyphicon-trash\"></span>\
                                           </button>\
                                         </div>\
                                       </div>\
                                     </div>";
-                    $("#campo_pent").after(todo_pent);
-                });
-            });
-
-            $(document).ready(function() {
-                $("#psal_agregar").click(function() {
-                    var todo_psal = "<div class=\"jumbotron\">\
-                                      <div class=\"row\">\
-                                        <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                          <label>Nombre</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"psal_nombre\">\
-                                          <label>Destino</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"psal_destino\">\
-                                          <button type=\"button\" class=\"btn btn-default\" id=\"psal_eliminar\">\
-                                              <span class=\"glyphicon glyphicon-trash\"></span>\
-                                          </button>\
-                                        </div>\
-                                      </div>\
-                                    </div>";
-                    $("#campo_psal").after(todo_psal);
-                });
-            });
-
-            $(document).ready(function() {
-                $("#pint_agregar").click(function() {
-                    var todo_pint = "<div class=\"jumbotron\">\
-                                      <div class=\"row\">\
-                                        <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                          <label>Nombre</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"pint_nombre\">\
-                                          <button type=\"button\" class=\"btn btn-default\" id=\"pint_eliminar\">\
-                                              <span class=\"glyphicon glyphicon-trash\"></span>\
-                                          </button>\
-                                        </div>\
-                                      </div>\
-                                    </div>";
-                    $("#campo_pint").after(todo_pint);
+                    $("#campo_prod").after(todo_prod);
                 });
             });
 
