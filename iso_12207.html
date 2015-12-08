@@ -15,14 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <!-- Latest compiled and minified CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
     <!--[if lt IE 9]>
      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
      <![endif]-->
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -32,17 +32,17 @@
                 <span class="glyphicon glyphicon-list-alt"></span>
             </h1>
         </div>
-        <form action="" class="form" id="form_iso12207">
+        <form action="reg_iso12207.php" class="form" id="form_iso12207" method="post">
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="nombre_proceso">Nombre de proceso</label>
-                    <input type="text" class="form-control" id="nombre_proceso">
+                    <input type="text" class="form-control" id="nombre_proceso" name="proceso" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
                     <label for="id_proceso">ID</label>
-                    <input type="text" class="form-control" id="id_proceso">
+                    <input type="text" class="form-control" id="id_proceso" name="p_id" required>
                 </div>
             </div>
             <div class="row">
@@ -56,14 +56,25 @@
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-6">
                     <label for="">Proposito del proceso</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" >
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                    <label for="">Resultados esperados del proceso</label>
-                    <input type="text" class="form-control">
-                    <label style="padding-top:20px; padding-right:10px;" for="">Agregar otro resultado</label>
+                    <label for="" id="label_resultado_esperado">Resultados esperados del proceso</label>
+                    <input type="text" class="form-control" name="resultado_num_0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <button type="button" class="btn btn-default" id="borrar_resultado">
+                        <span class="glyphicon glyphicon-plus"></span>Eliminar
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                    <label style="padding-right:10px;" for="">Agregar resultado</label>
                     <button type="button" class="btn btn-default" id="campo_resultado">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
@@ -82,13 +93,42 @@
                 <div class="row">
                     <div class="form-group col-xs-12 col-sm-12 col-lg-6">
                         <label for="">Nombre de la actividad</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" >
+                        <button type="button" class="btn btn-default" id="boton_eliminar_act">
+                            <span class="glyphicon glyphicon-remove"></span>Eliminar
+                        </button>
+
+                    </div>
+                </div>
+                <div class="tarea">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                            <label for="">Tarea</label>
+                            <input type="text" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                            <button type="button" class="btn btn-default" id="eliminar_tarea">
+                                <span class="glyphicon glyphicon-remove"></span>Eliminar tarea
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                        <label for="">Tarea</label>
-                        <input type="text" class="form-control">
+                        <label>Agregar nota a tarea</label>
+                        <button type="button" class="btn btn-default" id="boton_nota_tarea">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row" id="ultimo_nota">
+                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
+                        <label>Agregar opcion</label>
+                        <button type="button" class="btn btn-default" id="boton_opcion">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
                     </div>
                 </div>
                 <div class="row" id="row_tarea">
@@ -99,61 +139,95 @@
                         </button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                        <label>Agregar opcion</label>
-                        <button type="button" class="btn btn-default" id="boton_opcion">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </div>
-                </div>
-                <div class="row" id="ultimo_nota">
-                    <div class="form-group col-xs-12 col-sm-12 col-lg-6">
-                        <label>Agregar nota a tarea</label>
-                        <button type="button" class="btn btn-default" id="boton_nota_tarea">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </div>
-                </div>
             </div>
-
+            <button type="submit" class="btn btn-primary">Registrar proceso</button>
         </form>
         <script type="text/javascript">
-            var tarea = "<div class=\"row\">\
-                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                <label>Tarea</label>\
-                                <input type=\"text\" class=\"form-control\">\
+            var tarea = "<div class=\"tarea\">\
+                            <div class=\"row\">\
+                                <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                    <label>Tarea</label>\
+                                    <input type=\"text\" class=\"form-control\" >\
+                                </div>\
+                            </div>\
+                            <div class=\"row\">\
+                                <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                    <button type=\"button\" class=\"btn btn-default\" id=\"eliminar_tarea\">\
+                                        <span class=\"glyphicon glyphicon-remove\"></span>Eliminar tarea\
+                                    </button>\
+                                </div>\
                             </div>\
                         </div>";
             var opcion = "<div class=\"row\">\
                             <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                 <label>Opcion</label>\
-                                <input type=\"text\" class=\"form-control\">\
+                                <input type=\"text\" class=\"form-control\" >\
+                            </div>\
+                        </div>\
+                        <div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                <button type=\"button\" class=\"btn btn-default\" id=\"eliminar_opcion\">\
+                                    <span class=\"glyphicon glyphicon-remove\"></span>Eliminar opcion\
+                                </button>\
                             </div>\
                         </div>";
             var nota = "<div class=\"row\">\
                             <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                 <label>Nota (tarea)</label>\
-                                <input type=\"text\" class=\"form-control\">\
+                                <input type=\"text\" class=\"form-control\" >\
                             </div>\
-                        </div>"
+                        </div>";
             $("#form_iso12207").on("click", "#boton_tarea", function(){
-                $(this).parent().parent().before(tarea);
+                if ($(this).parent().parent().prev().find("#boton_opcion").prop("disabled")) {
+                    $(this).parent().parent().prev().find("#boton_opcion").prop("disabled", false);
+                    $(this).parent().parent().prev().prev().find("#boton_nota_tarea").prop("disabled", false);
+
+                }
+                $(this).parent().parent().prev().prev().before(tarea);
+            });
+            $("#form_iso12207").on("click", "#eliminar_tarea", function(){
+                if ($(this).parent().parent().parent().prev().find("#boton_eliminar_act") && $(this).parent().parent().parent().next().find("#boton_nota_tarea")) {
+                    $(this).parent().parent().parent().next().find("#boton_nota_tarea").prop("disabled", true);
+                    $(this).parent().parent().parent().next().next().find("#boton_opcion").prop("disabled", true);
+                }
+                $(this).parent().parent().parent().remove();
+            });
+            $("#form_iso12207").on("click", "#borrar_resultado", function(){
+                if ($(this).parent().parent().prev().find("input")){
+                    $(this).parent().parent().prev().find("input").remove();
+                }
+                if ( $(this).prev().is($("input")) ) {
+                    $(this).prev().remove();
+                    $(this).remove();
+                }
+            });
+            $("#form_iso12207").on("click", "#boton_eliminar_act", function(){
+                $(this).parent().parent().parent().remove();
+            });
+            $("#form_iso12207").on("click", "#eliminar_opcion", function(){
+                $(this).parent().parent().prev().remove();
+                $(this).parent().parent().remove();
             });
             $("#form_iso12207").on("click", "#boton_opcion", function(){
-                $(this).parent().parent().prev().before(opcion);
+                $(this).parent().parent().prev().prev().append(opcion);
             });
             $("#form_iso12207").on("click", "#boton_nota_tarea", function(){
-                $(this).parent().parent().prev().prev().before(nota);
+                $(this).parent().parent().prev().append(nota);
             });
+            var nota_proceso = 0;
             $(document).ready(function() {
                 $("#campo_nota").click(function() {
-                    $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' style='margin-top:8px;'>");
+                    $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' name=\"nota_num_" + nota_proceso++ + "\" style='margin-top:8px;' >");
                 });
             });
+            var num_resultado = 0;
             $(document).ready(function() {
                 $("#campo_resultado").click(function() {
-                    $(this).after("<input type='text' class='form-control' style='margin-top:8px;'>");
+                    $(this).after("<input type='text' name=\"resultado_num_" + ++num_resultado + "\" \
+                                    class='form-control' style='margin-top:8px;' >\
+                                    <button type=\"button\" class=\"btn btn-default\" id=\"borrar_resultado\">\
+                                        <span class=\"glyphicon glyphicon-plus\"></span>Eliminar\
+                                    </button>");
                 });
             });
             var act = 0;
@@ -163,19 +237,29 @@
                                 <div class=\"row\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                         <label>Nombre de la actividad</label>\
-                                        <input type=\"text\" class=\"form-control\">\
+                                        <input type=\"text\" class=\"form-control\" >\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_eliminar_act\">\
+                                            <span class=\"glyphicon glyphicon-remove\"></span>Eliminar\
+                                        </button>\
                                     </div>\
                                 </div>\
                                 <div class=\"row\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                         <label>Tarea</label>\
-                                        <input type=\"text\" class=\"form-control\">\
+                                        <input type=\"text\" class=\"form-control\" >\
                                     </div>\
                                 </div>\
-                                <div class=\"row\" id=\"row_tarea\">\
+                                <div class=\"row\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                        <label>Agregar tarea</label>\
-                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_tarea\">\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"eliminar_tarea\">\
+                                            <span class=\"glyphicon glyphicon-remove\"></span>Eliminar tarea\
+                                        </button>\
+                                    </div>\
+                                </div>\
+                                <div class=\"row\" id=\"ultimo_nota\">\
+                                    <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                        <label>Agreagar nota a tarea</label>\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_nota_tarea\">\
                                             <span class=\"glyphicon glyphicon-plus\"></span>\
                                         </button>\
                                     </div>\
@@ -188,16 +272,20 @@
                                         </button>\
                                     </div>\
                                 </div>\
-                                <div class=\"row\" id=\"ultimo_nota\">\
+                                <div class=\"row\" id=\"row_tarea\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                        <label>Nota (tarea)</label>\
-                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_nota_tarea\">\
+                                        <label>Agregar tarea</label>\
+                                        <button type=\"button\" class=\"btn btn-default\" id=\"boton_tarea\">\
                                             <span class=\"glyphicon glyphicon-plus\"></span>\
                                         </button>\
                                     </div>\
                                 </div>\
                                 </div>";
-                        $("div[class=jumbotron]:last").after(todo);
+                        if ($("div[class=jumbotron]:last").length) {
+                            $("div[class=jumbotron]:last").after(todo);
+                        } else {
+                            $(this).parent().parent().after(todo);
+                        }
                 });
             });
 
