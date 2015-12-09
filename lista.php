@@ -61,16 +61,19 @@
                 echo nl2br("\n");
                 foreach($lista as $x => $x_value) {
                     echo "<tr><td>".$x_value[proceso]."</td><td>
-                        <button type=\"button\" class=\"btn btn-default\">
-                            Ver
-                        </button></td>
+                        <a href=\"ver.php?nombre=".$x_value[proceso]."\">
+                            <button type=\"submit\" class=\"btn btn-default\">
+                                Ver
+                            </button>
+                        </a>
+                        </td>
                         <td>
                             <button type=\"button\" class=\"btn btn-default\">
                                 Modificar
                             </button></td>
                         </td>
                         <td>
-                            <button type=\"button\" class=\"btn btn-default\">
+                            <button type=\"submit\" class=\"btn btn-default\">
                                 Eliminar
                             </button></td>
                         </td></tr>";
