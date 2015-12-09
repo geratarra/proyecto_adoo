@@ -32,26 +32,26 @@
                 <span class="glyphicon glyphicon-list-alt"></span>
             </h1>
         </div>
-        <form action="" class="form" id="form_iso29110">
+        <form action="reg_iso29110.php" class="form" id="form_iso29110" method="post">
             <div class="row">
 
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="nombre_proceso">Nombre de proceso</label>
-                    <input type="text" class="form-control" id="nombre_proceso">
+                    <input type="text" class="form-control" id="nombre_proceso" name="proceso" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
                     <label for="id_proceso">ID</label>
-                    <input type="text" class="form-control" id="id_proceso">
+                    <input type="text" class="form-control" id="id_proceso" name="p_id" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="proposito_proceso">Proposito</label>
-                    <textarea class="form-control" rows="5" id="proposito_proceso"></textarea>
+                    <textarea class="form-control" rows="5" id="proposito_proceso" name="p_proceso" required></textarea>
                 </div>
             </div>
 
@@ -113,7 +113,7 @@
                     <input type="file" class="form-control" id="diagrama" accept="image/*">
                 </div>
             </div>
-
+            <button type="submit" class="btn btn-primary">Registrar proceso</button>
         </form>
 
         <script type="text/javascript">
