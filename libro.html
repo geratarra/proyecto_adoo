@@ -32,33 +32,33 @@
                 <span class="glyphicon glyphicon-list-alt"></span>
             </h1>
         </div>
-        <form action="" class="form" id="form_iso29110">
+        <form action="reg_libro.php" class="form" id="form_libro" method="post">
             <div class="row">
 
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="nombre_proceso">Nombre de proceso</label>
-                    <input type="text" class="form-control" id="nombre_proceso">
+                    <input type="text" class="form-control" id="nombre_proceso" name="proceso" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-3">
                     <label for="id_proceso">ID</label>
-                    <input type="text" class="form-control" id="id_proceso">
+                    <input type="text" class="form-control" id="id_proceso" name="p_id" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="proposito_proceso">Objetivo General</label>
-                    <textarea class="form-control" rows="5" id="proposito_proceso"></textarea>
+                    <textarea class="form-control" rows="5" id="objetivo_proceso" name="p_objetivo" required></textarea>
                 </div>
             </div>
 
             <div class="row" id="campo_objetivo">
                 <div class="form-group col-xs-12 col-sm-12 col-lg-6 alert alert-info">
                     <label style="padding-right:10px;" for="">Agregar objetivo especifico</label>
-                    <button type="button" class="btn btn-default" id="obj_agregar">
+                    <button type="button" class="btn btn-default" id="obj_agregar" >
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </div>
@@ -88,7 +88,7 @@
                   <span class="glyphicon glyphicon-plus"></span></button>
                 </div>
             </div>
-
+            <button type="submit" class="btn btn-primary">Registrar proceso</button>
         </form>
 
         <script type="text/javascript">
@@ -101,46 +101,26 @@
                             </button></td>\
                           </div>\
                         </div>";
-            var opcion = "<div class=\"row\">\
-                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                                <label>Opcion</label>\
-                                <input type=\"text\" class=\"form-control\">\
-                            </div>\
-                        </div>";
 
-
-            $("#form_iso29110").on("click", "#met_agregar", function(){
+            $("#form_libro").on("click", "#met_agregar", function(){
                 $(this).prev().after(tarea);
             });
-            $("#form_iso29110").on("click", "#met_eliminar", function(){
+            $("#form_libro").on("click", "#met_eliminar", function(){
                 $(this).parent().parent().remove();
             });
-            $("#form_iso29110").on("click", "#act_eliminar", function(){
+            $("#form_libro").on("click", "#act_eliminar", function(){
                 $(this).parent().parent().parent().remove();
             });
-            $("#form_iso29110").on("click", "#rol_eliminar", function(){
+            $("#form_libro").on("click", "#rol_eliminar", function(){
                 $(this).parent().parent().parent().remove();
             });
-            $("#form_iso29110").on("click", "#prod_eliminar", function(){
+            $("#form_libro").on("click", "#prod_eliminar", function(){
                 $(this).parent().parent().parent().remove();
             });
-            $("#form_iso29110").on("click", "#obj_eliminar", function(){
+            $("#form_libro").on("click", "#obj_eliminar", function(){
                 $(this).parent().parent().parent().remove();
-            });
-            $("#form_iso29110").on("click", "#boton_opcion", function(){
-                $(this).parent().parent().prev().before(opcion);
             });
 
-            $(document).ready(function() {
-                $("#campo_nota").click(function() {
-                    $("#campo_nota").after("<input type='text' class='form-control' id='nota_proceso' style='margin-top:8px;'>");
-                });
-            });
-            $(document).ready(function() {
-                $("#campo_resultado").click(function() {
-                    $(this).after("<input type='text' class='form-control' style='margin-top:8px;'>");
-                });
-            });
             var act = 0;
             $(document).ready(function() {
                 $("#boton_actividad").click(function() {
