@@ -51,9 +51,11 @@
                             </button></td>
                         </td>
                         <td>
+                            <a href=\"eliminar.php?nombre=".$x_value[proceso]."\">
                             <button type=\"submit\" class=\"btn btn-default\">
                                 Eliminar
                             </button></td>
+                            </a>
                         </td></tr>";
                 }                //echo $lista[0][proceso];
                 //var_dump($lista[0][0]);

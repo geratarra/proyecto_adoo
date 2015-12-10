@@ -40,24 +40,63 @@
         echo "<li class=\"list-group-item\">
                 <h4>".$proceso_json["id"].".3 "."Actividades</h4>";
         foreach ($proceso_json["actividades"] as $key_act => $value_act) {
-            echo "<br><h5>".$key_act."</h5>";
-            echo "<h5>Tareas:</h5>";
-            foreach ($value_act as $tarea_key => $tarea_value) {
-                echo "<h5>".$tarea_key."</h5><br>";
-                foreach ($tarea_value as $x => $value) {
-                    if ($x === "notas") {
-                        echo "<h5>Notas:<h5>";
-                        foreach ($value as $key => $value) {
-                            echo "<p>".$value."</p>";
-                        }
-                    } else {
-                        echo "<h5>Opciones:<h5>";
-                        foreach ($value as $key => $value) {
-                            echo "<p>".$value."</p>";
+            // key_act es cada actividad (act_0)
+            // print_r($value_act[1]);
+            $cont = 1;
+            foreach ($value_act as $key => $value) {
+                // $value act es el array de la actividad
+                // key es la key de lo que tiene cada actividad
+                if ($key === 0) {
+                    echo "<h5>".$proceso_json["id"].".3.".key($proceso_json["actividades"][$key_act])." ".$value_act[0]."</h5>";
+                } else {
+                    foreach($value as $key_tarea => $value_tarea) {
+                        if ($key_tarea === 0) {
+                            echo $proceso_json["id"].".3.".key($proceso_json["actividades"][$key_act]).".".$cont." ";
+                            echo $value_tarea."<br>";
+                        } else {
+                            foreach($value_tarea as $key_nota_opcion => $value_nota_opcion) {
+                                if ($key_tarea === "notas") {
+                                    echo "Notas<br>";
+                                    echo "<p>".$value_nota_opcion."</p>";
+                                } else {
+                                    echo "Opciones<br>";
+                                    echo "<p>".$value_nota_opcion."</p>";
+                                }
+                            }
                         }
                     }
 
+                    // $cont = 1;
+                    // foreach($value as $x => $y) {
+                    //     // entre aqui porque y es un array de toda la tarea
+                    //     if ($x === 0) {
+                    //         echo $proceso_json["id"].".3.".key($proceso_json["actividades"][$key_act]).".".$cont;
+                    //         echo $y."<br>";
+                    //         // echo $proceso_json["id"].".3.".key($proceso_json["actividades"][$key_act]).".";
+                    //     } else {
+                    //         if
+                    //         echo "....".$x."....";
+                    //         if ($x === "notas") {
+                    //             echo "<br>Notas:";
+                    //             foreach($y as $key_nota => $value_nota) {
+                    //                 echo $value_nota;
+                    //             }
+                    //         }
+                    //         if ($x === "opciones") {
+                    //             echo "<br>Opciones:";
+                    //             foreach($y as $key_nota => $value_nota) {
+                    //                 echo $value_nota;
+                    //             }
+                    //         }
+                    //         // break;
+                    //     }
+                    //     $cont++;
+                    // }
+                    $cont++;
                 }
+
+                // echo "aquiiii ".$value;
+                // echo "<h5>".$proceso_json["id"].".3.".key($proceso_json["actividades"][$key_act]).".".key(proceso_json["actividades"])."</h5>";
             }
         }
         echo "</li>";
