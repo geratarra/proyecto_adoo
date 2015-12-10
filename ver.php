@@ -37,12 +37,30 @@
             echo "<h4>".$key.") ".$resultado."</h4>";
         }
         echo "</li>";
-        echo "<div class=\"list-group\">
-                <li class=\"list-group-item\">
-                    <h4>".$proceso_json["id"].".3 "."Actividades</h4>";
+        echo "<li class=\"list-group-item\">
+                <h4>".$proceso_json["id"].".3 "."Actividades</h4>";
         foreach ($proceso_json["actividades"] as $key_act => $value_act) {
-            echo "<h5>"
+            echo "<br><h5>".$key_act."</h5>";
+            echo "<h5>Tareas:</h5>";
+            foreach ($value_act as $tarea_key => $tarea_value) {
+                echo "<h5>".$tarea_key."</h5><br>";
+                foreach ($tarea_value as $x => $value) {
+                    if ($x === "notas") {
+                        echo "<h5>Notas:<h5>";
+                        foreach ($value as $key => $value) {
+                            echo "<p>".$value."</p>";
+                        }
+                    } else {
+                        echo "<h5>Opciones:<h5>";
+                        foreach ($value as $key => $value) {
+                            echo "<p>".$value."</p>";
+                        }
+                    }
+
+                }
+            }
         }
+        echo "</li>";
         echo "</div>";
 
     }
