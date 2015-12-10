@@ -15,7 +15,7 @@
         }
         $proceso = NULL;
         foreach($lista as $key => $value) {
-            if ($value[proceso] == $nombre) {
+            if ($value['proceso'] == $nombre) {
                 $proceso = $lista[$key];
             }
         }
@@ -26,7 +26,7 @@
 
         $proceso = dame_proceso($nombre);
         if ($proceso) {
-            if ($proceso["formato"] === "iso_12207"){
+            if ($proceso['formato'] === "iso_12207"){
                 $proceso_json = array();
 
 
@@ -40,10 +40,12 @@
                 foreach ($proceso as $key => $value) {
                     if ($key[0] === "a") {
                         $proceso_json["actividades"][$key] = array();
+                        array_push($proceso_json["actividades"][$key], $value);
                         // $proceso_json["actividades"][$key]["tareas"] = array();
                     }
                     if ($key[0] === "t") {
                         $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key] = array();
+                        array_push($proceso_json["actividades"][endKey($proceso_json["actividades"])][$key], $value);
                         $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key]["notas"] = array();
                         $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key]["opciones"] = array();
                     }
