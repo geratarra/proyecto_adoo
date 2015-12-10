@@ -92,18 +92,17 @@
         </form>
 
         <script type="text/javascript">
-            var tarea = "<div class=\"row\">\
-                          <div class=\"form-group col-xs-12 col-sm-6 col-md-6 col-lg-6\">\
-                            <label>Metodo</label>\
-                            <input type=\"text\" class=\"form-control\" id=\"met_nombre\">\
-                            <button type=\"button\" class=\"btn btn-default\" id=\"met_eliminar\">\
-                                Eliminar metodo<span class=\"glyphicon glyphicon-trash\"></span>\
-                            </button></td>\
-                          </div>\
+            var met_numb = 0;
+            var metodos = "<div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                              <label for=\"metodos\">Metodo</label>\
+                                <input type=\"text\" class=\"form-control\" name=\"met_" + met_numb++ + "\">\
+                                <button type=\"button\" class=\"btn btn-default \" id=\"met_eliminar\">\
+                                    Eliminar metodo<span class=\"glyphicon glyphicon-trash\"></span>\
+                                </button>\
                         </div>";
-
             $("#form_libro").on("click", "#met_agregar", function(){
-                $(this).prev().after(tarea);
+                $(this).prev().after(metodos);
             });
             $("#form_libro").on("click", "#met_eliminar", function(){
                 $(this).parent().parent().remove();
@@ -128,7 +127,7 @@
                                   <div class=\"row\">\
                                     <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                       <label for=\"actividades\">Actividad</label>\
-                                        <input type=\"text\" class=\"form-control\" id=\"actividades\">\
+                                        <input type=\"text\" class=\"form-control\" name=\"act_" + act++ + "\">\
                                         <button type=\"button\" class=\"btn btn-default \" id=\"act_eliminar\">\
                                             Eliminar Actividad<span class=\"glyphicon glyphicon-trash\"></span>\
                                         </button>\
@@ -140,15 +139,16 @@
                 });
             });
 
+            var rol_numb = 0;
             $(document).ready(function() {
                 $("#rol_agregar").click(function() {
                     var todo_rol = "<div class=\"jumbotron\">\
                                       <div class=\"row\">\
                                         <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                           <label>Rol</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"rol\">\
+                                          <input type=\"text\" class=\"form-control\" name=\"rol_" + rol_numb + "\">\
                                           <label>Nombre</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"nombre\">\
+                                          <input type=\"text\" class=\"form-control\" name=\"rol_nombre_" + rol_numb++ + "\">\
                                           <button type=\"button\" class=\"btn btn-default\" id=\"rol_eliminar\">\
                                               <span class=\"glyphicon glyphicon-trash\"></span>\
                                           </button>\
@@ -159,13 +159,14 @@
                 });
             });
 
+            var prod_numb = 0;
             $(document).ready(function() {
                 $("#prod_agregar").click(function() {
                     var todo_prod = "<div class=\"jumbotron\">\
                                       <div class=\"row\">\
                                         <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                           <label>Producto</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"prod_nombre\">\
+                                          <input type=\"text\" class=\"form-control\" name=\"prod_nombre_" + prod_numb ++ +"\">\
                                           <button type=\"button\" class=\"btn btn-default\" id=\"prod_eliminar\">\
                                               <span class=\"glyphicon glyphicon-trash\"></span>\
                                           </button>\
@@ -176,13 +177,14 @@
                 });
             });
 
+            var obj_numb = 0;
             $(document).ready(function() {
                 $("#obj_agregar").click(function() {
                     var todo_obj = "<div class=\"jumbotron\">\
                                       <div class=\"row\">\
                                         <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                           <label>Objetivo</label>\
-                                          <input type=\"text\" class=\"form-control\" id=\"obj_nombre\">\
+                                          <input type=\"text\" class=\"form-control\" name=\"obj_" + obj_numb++ + "\">\
                                           <button type=\"button\" class=\"btn btn-default\" id=\"obj_eliminar\">\
                                               <span class=\"glyphicon glyphicon-trash\"></span>\
                                           </button>\
