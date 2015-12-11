@@ -68,15 +68,55 @@
 
                 }
 
-            }  else {
-                echo "Error al seleccionar la fila del proceso en la base de datos";
+            }
+            if ($proceso["formato"] === "libro") {
+                $proceso_json = array();
+                $proceso_json+= array("proceso" => $proceso["proceso"]);
+                $proceso_json+= array("id" => $proceso["p_id"]);
+                $proceso_json+= array("objetivo_general" => $proceso["p_objetivo"]);
+                $proceso_json+= array("objetivos_especificios" => array());
+                $proceso_json+= array("actividades" => array());
+                $proceso_json+= array("roles" => array());
+                $proceso_json+= array("productos" => array());
+
+                foreach($proceso as $key => $value) {
+                    if (strpos($key, "obj_") !== false) {
+                        array_push($proceso_json["objetivos_especificios"], $value);
+                    }
+                    if (strpos($key, "act_") !== false) {
+                        array_push($proceso_json["actividades"], array());
+
+                        $proceso_json["actividades"][endKey($proceso_json["actividades"])] += array("descripcion" => $value);
+                        $proceso_json["actividades"][endKey($proceso_json["actividades"])] += array("metodos" => array());
+                    }
+                    if (strpos($key, "met") !== false) {
+                        array_push($proceso_json["actividades"][endKey($proceso_json["actividades"])]["metodos"], $value);
+                    }
+
+                    if (strpos($key, "rol_desc") !== false) {
+                        array_push($proceso_json["roles"], array());
+                        $proceso_json["roles"][endKey($proceso_json["roles"])] += array("rol" => $value);
+                    }
+                    if (strpos($key, "rol_nombre") !== false) {
+                        $proceso_json["roles"][endKey($proceso_json["roles"])] += array("rol_nombre" => $value);
+                    }
+                    if (strpos($key, "prod") !== false) {
+                        array_push($proceso_json["productos"], $value);
+                    }
+
+                }
+                $proceso_json["objetivos_especificios"] = array_reverse($proceso_json["objetivos_especificios"]);
+                $proceso_json["actividades"] = array_reverse($proceso_json["actividades"]);
+                $proceso_json["roles"] = array_reverse($proceso_json["roles"]);
+                $proceso_json["productos"] = array_reverse($proceso_json["productos"]);
+
             }
 
-                return $proceso_json;
-            }
-
-
+            return $proceso_json;
         }
+
+
+    }
 
 
 
