@@ -68,12 +68,94 @@
 
                 }
 
-            }  else {
-                echo "Error al seleccionar la fila del proceso en la base de datos";
-            }
+            }else
 
-                return $proceso_json;
-            }
+            if ($proceso['formato'] === "iso_29110"){
+              $proceso_json = array();
+              $proceso_json += array("proceso" => $proceso["proceso"]);
+              $proceso_json += array("id" => $proceso["p_id"]);
+              $proceso_json += array("proposito" => $proceso["p_proposito"]);
+              $proceso_json += array("objetivos" => array());
+              $proceso_json += array("roles" => array());
+              $proceso_json += array("productos_entrada" => array());
+              $proceso_json += array("productos_salida" => array());
+              $proceso_json += array("productos_interno" => array());
+              $proceso_json += array("actividades" => array());
+
+              foreach ($proceso as $key => $value) {
+                  if(strpos($key, "obj") !== false){
+                    array_push($proceso_json["objetivos"], $value);
+                  }
+
+                  if(strpos($key, "rol_") !== false && strpos($key, "_abr_") === false && strpos($key, "_rol_") === false){
+                    //$proceso_json["roles"][$key]
+                    // if(strpos($key, "_abr_") === false && strpos($key, "_rol_") === false ){
+                    $proceso_json["roles"][$key] = array();
+                    array_push($proceso_json["roles"][$key], $value);
+                    // }
+                    // array_push($proceso_json["roles"], $value);
+                  }
+                  if(strpos($key, "rol_abr_") !== false){
+                    $f = endKey($proceso_json["roles"]);
+                    array_push($proceso_json["roles"][$f], $value);
+                  }
+
+                  if(strpos($key, "pent_nombre_") !== false){
+                    $proceso_json["productos_entrada"][$key] = array();
+                    array_push($proceso_json["productos_entrada"][$key], $value);
+                  }
+                  if(strpos($key, "pent_fuente_") !== false){
+                    $f = endKey($proceso_json["productos_entrada"]);
+                    array_push($proceso_json["productos_entrada"][$f], $value);
+                  }
+
+                  if(strpos($key, "psal_nombre_") !== false){
+                    $proceso_json["productos_salida"][$key] = array();
+                    array_push($proceso_json["productos_salida"][$key], $value);
+                  }
+                  if(strpos($key, "psal_destino_") !== false){
+                    $f = endKey($proceso_json["productos_salida"]);
+                    array_push($proceso_json["productos_salida"][$f], $value);
+                  }
+
+                  if(strpos($key, "pint_") !== false){
+                    array_push($proceso_json["productos_interno"], $value);
+                  }
+
+                  if ($key[0] === "a") {
+                      $proceso_json["actividades"][$key] = array();
+                      array_push($proceso_json["actividades"][$key], $value);
+                      // $proceso_json["actividades"][$key]["tareas"] = array();
+                  }
+                  if (strpos($key, "tar_nombre_") !== false) {
+                      // $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key] = array();
+                      // array_push($proceso_json["actividades"][endKey($proceso_json["actividades"])][$key], $value);
+                      $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key]= array();
+                      // $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key]["tar_roles"] = array();
+                      // $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key]["tar_pent"] = array();
+                      // $proceso_json["actividades"][endKey($proceso_json["actividades"])][$key]["tar_psal"] = array();
+                      array_push($proceso_json["actividades"][endKey($proceso_json["actividades"])][$key], $value);
+                  }
+                  if(strpos($key, "tar_rol_") !== false){
+                    $f = endKey($proceso_json["actividades"]);
+                    $f2 = endKey($proceso_json["actividades"][$f]);
+                    array_push($proceso_json["actividades"][$f][$f2], $value);
+                  }
+                  if(strpos($key, "tar_pent_") !== false){
+                    $f = endKey($proceso_json["actividades"]);
+                    $f2 = endKey($proceso_json["actividades"][$f]);
+                    array_push($proceso_json["actividades"][$f][$f2], $value);
+                  }
+                  if(strpos($key, "tar_psal_") !== false){
+                    $f = endKey($proceso_json["actividades"]);
+                    $f2 = endKey($proceso_json["actividades"][$f]);
+                    array_push($proceso_json["actividades"][$f][$f2], $value);
+                  }
+                }
+            }else
+              echo "Error al seleccionar la fila del proceso en la base de datos";
+          }
+            return $proceso_json;
 
 
         }

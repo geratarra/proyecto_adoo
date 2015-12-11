@@ -33,6 +33,7 @@
             </h1>
         </div>
         <form action="reg_iso29110.php" class="form" id="form_iso29110" method="post">
+          <input type="hidden" value="iso_29110" name="formato">
             <div class="row">
 
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -51,7 +52,7 @@
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="proposito_proceso">Proposito</label>
-                    <textarea class="form-control" rows="5" id="proposito_proceso" name="p_proceso" required></textarea>
+                    <textarea class="form-control" rows="5" id="proposito_proceso" name="p_proposito" required></textarea>
                 </div>
             </div>
 
@@ -141,23 +142,23 @@
 
             var tarea_num = 0;
             var act = 0;
-            var tarea = "<div class=\"row\">\
-                          <div class=\"form-group col-xs-12 col-sm-6 col-md-6 col-lg-6\">\
-                            <label>Nombre de la tarea</label>\
-                            <input type=\"text\" class=\"form-control\" name=\"tar_nombre_" + tarea_num + "_" + act + "\">\
-                            <label>Rol</label>\
-                            <input type=\"text\" class=\"form-control\" name=\"tar_rol_" + tarea_num + "_" + act + "\">\
-                            <label>Productos de entrada</label>\
-                            <input type=\"text\" class=\"form-control\" name=\"tar_pent_" + tarea_num + "_" + act + "\">\
-                            <label>Productos de salida</label>\
-                            <input type=\"text\" class=\"form-control\" name=\"tar_psal_" + tarea_num++ + "_" + act + "\">\
-                            <button type=\"button\" class=\"btn btn-default\" id=\"tar_eliminar\">\
-                                Eliminar Tarea<span class=\"glyphicon glyphicon-trash\"></span>\
-                            </button></td>\
-                          </div>\
-                        </div>";
 
             $("#form_iso29110").on("click", "#tar_agregar", function(){
+              var tarea = "<div class=\"row\">\
+                            <div class=\"form-group col-xs-12 col-sm-6 col-md-6 col-lg-6\">\
+                              <label>Nombre de la tarea</label>\
+                              <input type=\"text\" class=\"form-control\" name=\"tar_nombre_" + tarea_num + "_" + act + "\">\
+                              <label>Rol</label>\
+                              <input type=\"text\" class=\"form-control\" name=\"tar_rol_" + tarea_num + "_" + act + "\">\
+                              <label>Productos de entrada</label>\
+                              <input type=\"text\" class=\"form-control\" name=\"tar_pent_" + tarea_num + "_" + act + "\">\
+                              <label>Productos de salida</label>\
+                              <input type=\"text\" class=\"form-control\" name=\"tar_psal_" + tarea_num++ + "_" + act + "\">\
+                              <button type=\"button\" class=\"btn btn-default\" id=\"tar_eliminar\">\
+                                  Eliminar Tarea<span class=\"glyphicon glyphicon-trash\"></span>\
+                              </button></td>\
+                            </div>\
+                          </div>";
                 $(this).prev().after(tarea);
             });
 
