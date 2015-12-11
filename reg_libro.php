@@ -3,7 +3,7 @@
     // // var_dump($_POST);
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "root";
     $dbName = "adoo";
     //
     // // Create connection
@@ -24,7 +24,7 @@
         echo "
             <script language='javascript'>
                 alert('Registro exitoso');
-                window.location = 'iso_29110.html';
+                window.location = 'index.html';
             </script>";
         //header('Location: iso_12207.html');
     } else {

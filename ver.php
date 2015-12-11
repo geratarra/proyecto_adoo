@@ -7,7 +7,7 @@
 
     echo "<body><div class=\"container\">";
     if ($proceso["formato"] === "iso_12207") {
-        print_r($proceso_json);
+        // print_r($proceso_json);
 
         echo "
             <div class=\"page-header\">

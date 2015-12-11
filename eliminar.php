@@ -1,14 +1,14 @@
 <?php
     include("conexion.php");
-    // $sql = "select * from t2 where proceso like '%".$_GET["nombre"]."%'";
-    // echo $sql;
-    // $result = $conn->query($sql);
-    // $la_buena = "delete from t2 where proceso = ".$result;
-    $la_buena = "delete from t2 where proceso like '%".$_GET["nombre"]."%'";
 
-    echo "<br>la buena >> ".$la_buena;
+    $la_buena = "delete from t2 where proceso like '%".$_GET["nombre"]."%'";
     if ($conn->query($la_buena) === TRUE) {
-        echo "Record deleted successfully";
+        echo "
+            <script language=\"javascript\">
+                alert(\"Proceso borrado exitosamente\");
+                window.location = 'lista.php';
+            </script>
+            ";
     } else {
         echo "Error deleting record: " . $conn->error;
     }

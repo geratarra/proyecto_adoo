@@ -33,6 +33,7 @@
             </h1>
         </div>
         <form action="reg_libro.php" class="form" id="form_libro" method="post">
+            <input type="hidden" name="formato" value="libro">
             <div class="row">
 
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -93,15 +94,16 @@
 
         <script type="text/javascript">
             var met_numb = 0;
-            var metodos = "<div class=\"row\">\
-                            <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
-                              <label for=\"metodos\">Metodo</label>\
-                                <input type=\"text\" class=\"form-control\" name=\"met_" + met_numb++ + "\">\
-                                <button type=\"button\" class=\"btn btn-default \" id=\"met_eliminar\">\
-                                    Eliminar metodo<span class=\"glyphicon glyphicon-trash\"></span>\
-                                </button>\
-                        </div>";
+
             $("#form_libro").on("click", "#met_agregar", function(){
+                var metodos = "<div class=\"row\">\
+                                <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
+                                  <label for=\"metodos\">Metodo</label>\
+                                    <input type=\"text\" class=\"form-control\" name=\"met_" + met_numb++ + "\">\
+                                    <button type=\"button\" class=\"btn btn-default \" id=\"met_eliminar\">\
+                                        Eliminar metodo<span class=\"glyphicon glyphicon-trash\"></span>\
+                                    </button>\
+                            </div>";
                 $(this).prev().after(metodos);
             });
             $("#form_libro").on("click", "#met_eliminar", function(){
@@ -146,9 +148,9 @@
                                       <div class=\"row\">\
                                         <div class=\"form-group col-xs-12 col-sm-12 col-lg-6\">\
                                           <label>Rol</label>\
-                                          <input type=\"text\" class=\"form-control\" name=\"rol_" + rol_numb + "\">\
+                                          <input type=\"text\" class=\"form-control\" name=\"rol_desc_"+ ++rol_numb +"\">\
                                           <label>Nombre</label>\
-                                          <input type=\"text\" class=\"form-control\" name=\"rol_nombre_" + rol_numb++ + "\">\
+                                          <input type=\"text\" class=\"form-control\" name=\"rol_nombre_"+ rol_numb +"\">\
                                           <button type=\"button\" class=\"btn btn-default\" id=\"rol_eliminar\">\
                                               <span class=\"glyphicon glyphicon-trash\"></span>\
                                           </button>\
